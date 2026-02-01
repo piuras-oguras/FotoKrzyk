@@ -24,7 +24,6 @@ class HistoryViewModel(app: Application) : AndroidViewModel(app) {
         viewModelScope.launch { repo.clearAll() }
     }
 
-    // ZAMIANA: zamiast e-maila -> SMS
     fun shareCsvBySms(phoneNumber: String = "") {
         val ctx = getApplication<Application>()
         val list = items.value
