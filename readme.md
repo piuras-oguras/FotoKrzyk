@@ -18,7 +18,6 @@
   <img src="img/img.png" width="45%" />
   <img src="img/img_1.png" width="45%" />
 </p>
----
 
 ## 2. Stos Technologiczny (Tech Stack)
 
