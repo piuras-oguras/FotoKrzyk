@@ -9,6 +9,15 @@ android {
     namespace = "pbs.edu.fotokrzyk"
     compileSdk = 36
 
+    signingConfigs {
+        create("release") {
+            storeFile = file("path/to/your/keystore.jks")
+            storePassword = "YOUR_STORE_PASSWORD"
+            keyAlias = "YOUR_KEY_ALIAS"
+            keyPassword = "YOUR_KEY_PASSWORD"
+        }
+    }
+
     defaultConfig {
         applicationId = "pbs.edu.fotokrzyk"
         minSdk = 26
@@ -17,6 +26,14 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        getByName("release") {
+            isMinifyEnabled = false
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            signingConfig = signingConfigs.getByName("release")
+        }
     }
 
     buildFeatures {
