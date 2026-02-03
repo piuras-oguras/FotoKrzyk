@@ -14,8 +14,10 @@
 * 🗄️ **Historia pomiarów:** Przeglądanie zapisanych zgłoszeń z podziałem na karty.
 * 📤 **Eksport danych:** Udostępnianie historii pomiarów przez SMS (format CSV).
 
-![img.png](img/img.png)
-![img_1.png](img/img_1.png)
+<p align="center">
+  <img src="img/img.png" width="45%" />
+  <img src="img/img_1.png" width="45%" />
+</p>
 ---
 
 ## 2. Stos Technologiczny (Tech Stack)
