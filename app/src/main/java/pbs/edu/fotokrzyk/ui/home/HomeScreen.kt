@@ -100,7 +100,6 @@ fun HomeScreen(
     }
 
     fun ensurePermissionsThen(action: PendingAction) {
-        // Jeżeli wszystko mamy, robimy od razu
         if (hasAll(ctx)) {
             localMessage = null
             when (action) {
@@ -114,8 +113,6 @@ fun HomeScreen(
             }
             return
         }
-
-        // Jeśli nie mamy, prosimy i zapamiętujemy co user chciał zrobić
         pendingAction = action
         permissionLauncher.launch(Permissions.required)
     }
@@ -159,14 +156,10 @@ fun HomeScreen(
                 modifier = Modifier.fillMaxWidth()
             ) { Text("Przejdź do historii") }
 
-            // Najpierw lokalny komunikat UI (np. odmowa uprawnień), potem ten z ViewModelu
             (localMessage ?: state.message)?.let {
                 Text(it, color = MaterialTheme.colorScheme.primary)
             }
-
             Divider()
-
-            Text("Ostatni wynik (zapisany):")
             Text("dB (orientacyjnie): ${state.lastDb ?: "-"}")
             Text("GPS: ${state.lastLat ?: "-"}, ${state.lastLng ?: "-"}")
             Text("Zdjęcie Uri: ${state.lastPhotoUri ?: "-"}")

@@ -54,14 +54,12 @@ class HomeViewModel(app: Application) : AndroidViewModel(app) {
 
         _state.update { it.copy(isSaving = true, message = "Pomiar hałasu...") }
 
-        // plik tylko po to, żeby MediaRecorder mógł działać (potem usuwamy)
         val tempFile = File(app.cacheDir, "temp_audio_${System.currentTimeMillis()}.m4a")
 
         val mr = try {
             (if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) MediaRecorder(app) else MediaRecorder()).apply {
                 setAudioSource(MediaRecorder.AudioSource.MIC)
 
-                // Zamiast AMR_NB + 3GP (często maxAmplitude=0), dajemy AAC w MP4/M4A
                 setOutputFormat(MediaRecorder.OutputFormat.MPEG_4)
                 setAudioEncoder(MediaRecorder.AudioEncoder.AAC)
                 setAudioSamplingRate(44100)
@@ -85,7 +83,6 @@ class HomeViewModel(app: Application) : AndroidViewModel(app) {
         viewModelScope.launch {
             var maxAmp = 0
 
-            // próbkujemy przez ~2 sekundy, bo maxAmplitude bywa opóźnione
             repeat(20) {
                 delay(100)
                 val amp = try {
@@ -109,7 +106,6 @@ class HomeViewModel(app: Application) : AndroidViewModel(app) {
 
             Log.d(TAG, "Measured maxAmp=$maxAmp")
 
-            // maxAmp: 0..32767, to jest "umowne". Wynik to dBFS-ish, nie SPL.
             val safeAmp = maxAmp.coerceAtLeast(1)
             val approxDbRaw = 20 * log10(safeAmp.toDouble())
             val approxDb = round(approxDbRaw * 100) / 100

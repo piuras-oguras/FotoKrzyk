@@ -15,6 +15,8 @@ android {
         targetSdk = 36
         versionCode = 1
         versionName = "1.0"
+
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildFeatures {
@@ -26,6 +28,7 @@ android {
         targetCompatibility = JavaVersion.VERSION_17
     }
 
+    //noinspection WrongGradleMethod
     kotlin {
         jvmToolchain(17)
     }
@@ -56,4 +59,13 @@ dependencies {
 
     // Coil
     implementation("io.coil-kt:coil-compose:2.7.0")
+
+    // Testing
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.androidx.espresso.core)
+    androidTestImplementation(platform(libs.androidx.compose.bom))
+    androidTestImplementation(libs.androidx.compose.ui.test.junit4)
+    debugImplementation(libs.androidx.compose.ui.test.manifest)
+    androidTestImplementation(libs.androidx.test.runner)
 }

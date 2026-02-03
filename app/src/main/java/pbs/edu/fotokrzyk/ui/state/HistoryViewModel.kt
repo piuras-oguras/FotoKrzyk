@@ -38,7 +38,6 @@ class HistoryViewModel(app: Application) : AndroidViewModel(app) {
         val header = "FotoHałas - eksport pomiarów (${now()})"
         val smsBody = "$header\n\n$csv"
 
-        // smsto: pozwala kierować Intent stricte do aplikacji SMS
         val intent = Intent(Intent.ACTION_SENDTO).apply {
             data = Uri.parse("smsto:$phoneNumber")
             putExtra("sms_body", smsBody)
