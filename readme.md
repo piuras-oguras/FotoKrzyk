@@ -1,7 +1,7 @@
 # FotoHałas
+
 **Autor:** Szymon Piórkowski \
 **Przedmiot:** Programowanie Aplikacji Mobilnych [LAB]
----
 
 ## 1. Wstęp
 
